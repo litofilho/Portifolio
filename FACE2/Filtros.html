@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR" class="h-100">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="Bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="bootstrap-table-master/dist/bootstrap-table.css">
+  <link rel="stylesheet" href="bootstrap-table-filter-control.css">
+  <link rel="stylesheet" href="bootstrap-editable.css">
+  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="jquery/jquery-3.3.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="Bootstrap/js/bootstrap.js"></script>
+  <script src="bootstrap-table-master/dist/bootstrap-table.js"></script>
+  <script src="bootstrap-table-editable.js"></script>
+  <script src="bootstrap-editable.js"></script>
+  <script src="bootstrap-table-filter-control.js"></script>
+  <script src="custom.js"></script>
+
+</head>
+
+<body class="bg-face">
+
+    <nav class="navbar navbar-expand-lg navbar-primary bg-primary shadow-lg">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <form class="form-inline my-2 my-lg-3">
+          </form>
+        </div>
+    </nav>
+
+  <div class="card container shadow-lg p-3 mb-5 bg-white rounded mt-3">
+    <div class="d-flex flex-row mb-3">
+      <h4>Filtros</h4>
+    </div>
+
+    <div class="d-flex flex-row mb-3 ">
+
+      <div class="form-group col pl-0">
+        <label>Tabela Padrão</label>
+        <div class="input-group cursor-pointer" data-toggle="modal" data-target="#modal-add2">
+          <input type="text" class="form-control col" placeholder="Selecionar" aria-label="Selecionar">
+          <div class="input-group-append">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col pr-0">
+        <label >Descrição</label>
+        <div class="input-group">
+          <input type="text" class="form-control" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse mb-3">
+
+      <button id="limpar-filtro" class="btn" disabled>
+             Limpar Filtro
+    </button>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-add2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog w-50 mw-100 " role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Pesquisar Tabela Padrão</h4>
+
+        </div>
+
+        <div class="modal-body">
+          <table id="tbLista" data-toggle="table">
+          </table>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-toggle="collapse" href="#msg-erro" role="button" aria-expanded="false" aria-controls="alert">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer bg-primary fixed-bottom shadow-bottom">
+    <div class="container h-25">
+        <form class="form-inline my-2 my-lg-5">
+        </form>
+    </div>
+  </footer>
+
+
+  <script>
+    var remove = $('#remove');
+    var data = [{
+        "id": 0,
+        "name": "Item 0",
+        "price": "$0"
+      },
+      {
+        "id": 1,
+        "name": "Item 1",
+        "price": "$1"
+      },
+      {
+        "id": 2,
+        "name": "Item 2",
+        "price": "$2"
+      },
+      {
+        "id": 3,
+        "name": "Item 3",
+        "price": "$3"
+      },
+      {
+        "id": 4,
+        "name": "Item 4",
+        "price": "$4"
+      },
+      {
+        "id": 5,
+        "name": "Item 5",
+        "price": "$5"
+      },
+      {
+        "id": 6,
+        "name": "Item 6",
+        "price": "$6"
+      },
+      {
+        "id": 7,
+        "name": "Item 7",
+        "price": "$7"
+      },
+      {
+        "id": 8,
+        "name": "Item 8",
+        "price": "$8"
+      },
+      {
+        "id": 9,
+        "name": "Item 9",
+        "price": "$9"
+      },
+      {
+        "id": 10,
+        "name": "Item 10",
+        "price": "$10"
+      },
+      {
+        "id": 11,
+        "name": "Item 11",
+        "price": "$11"
+      },
+      {
+        "id": 12,
+        "name": "Item 12",
+        "price": "$12"
+      },
+      {
+        "id": 13,
+        "name": "Item 13",
+        "price": "$13"
+      },
+      {
+        "id": 14,
+        "name": "Item 14",
+        "price": "$14"
+      },
+      {
+        "id": 15,
+        "name": "Item 15",
+        "price": "$15"
+      },
+      {
+        "id": 16,
+        "name": "Item 16",
+        "price": "$16"
+      },
+      {
+        "id": 17,
+        "name": "Item 17",
+        "price": "$17"
+      },
+      {
+        "id": 18,
+        "name": "Item 18",
+        "price": "$18"
+      },
+      {
+        "id": 19,
+        "name": "Item 19",
+        "price": "$19"
+      }
+    ];
+
+    $("#tbLista").bootstrapTable({
+
+      idField: 'id',
+      data: data,
+      dataType: 'json',
+      classes: 'table table-hover table-condensed',
+      method: 'post',
+      search: true,
+      toolbar: '#toolbar',
+      pageSize: 5,
+      striped: true,
+      sidePagination: 'client',
+      pagination: true,
+      pageList: [25, 50, 100, 'ALL'],
+      sortName: 'name',
+      sortOrder: 'asc',
+      singleSelect: false,
+      maintainSelected: true,
+      clickToSelect: false,
+      filterControl: true,
+      filterShowClear: true,
+      columns: [{
+          title: 'Selecionar Todos',
+          checkbox: true,
+          editable: false
+        },
+        {
+          field: 'id',
+          title: 'Id',
+          visible: false,
+          showFilter: true,
+        },
+        {
+          class: 'w-75',
+          field: 'name',
+          title: 'Receita',
+          sortable: true,
+          showFilter: true,
+          filterControl: 'input',
+          editable: {mode: 'inline'}
+        },
+        {
+          field: 'price',
+          title: 'Item',
+          sortable: true,
+          showFilter: true,
+          filterControl: 'input'
+
+        }
+      ]
+    });
+  </script>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+
+	<style>
+	.carousel-inner > .item > img {
+		width: 100%;
+	}
+	.carousel-caption {
+		bottom:0;
+		left: 0;
+		width: 100%;
+
+		background: white;
+	    background: -webkit-linear-gradient(transparent, rgba(0,0,0,1));
+	    background: -o-linear-gradient(transparent, rgba(0,0,0,1));
+	    background: -moz-linear-gradient(transparent, rgba(0,0,0,1));
+	    background: -ms-linear-gradient(transparent, rgba(0,0,0,1));
+	}
+	.carousel-control a {
+	    font-size: 20px;
+	    color: #fff;
+	    text-align: center;
+	    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+	}
+	.carousel-control a:hover, .carousel-control a:active, .carousel-control a:focus  {
+		text-decoration: none;
+	}
+	</style>
+</head>
+
+<body>
+	<header class="container-fluid">
+		<div class="container">
+			<div class="submenu-container row">
+				<div class="col-xs-12 col-sm-9 text-left pX-0 over-auto">
+					<ul class="submenu">
+						<li><a href="#">Site Cultura Inglesa</a></li><li>•</li>
+						<li><a href="#">Site</a></li><li>•</li>
+						<li><a href="#">Teamwork</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-6 col-sm-2 text-right pX-0 over-auto">
+					<ul class="acessibilidade">
+						<li><a href="#">A-</a></li>
+						<li><a href="#">A</a></li>
+						<li><a href="#">A+</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-6 col-sm-1 text-right pX-0 over-auto">
+					<ul class="idioma">
+						<li><img src="img/uk.gif"></li>
+						<li><img src="img/br.gif"></li>
+					</ul>
+				</div>
+			</div>
+			<div class="header-container row">
+				<div class="col-sm-6 text-left logo-container pX-0">
+					<img src="img/logo-cultura-head.png">
+				</div>
+				<div class="col-sm-6 text-right search-container pX-0">
+					<input type="text" placeholder="Pesquisar neste site">
+				</div>
+			</div>
+			<div class="menu-container row">
+				<nav class="navbar">
+					<div class="navbar-header">
+				      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span> 
+				      </button>
+				    </div>
+				    <div class="collapse navbar-collapse pX-0" id="myNavbar">
+					    <ul class="nav navbar-nav">
+						    <li class="active home"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+						    <li><a href="#">QUEM SOMOS</a></li>
+						    <li><a href="#">RESPONSABILIDADE SOCIAL</a></li>
+						    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">DROPDOWN</a>
+						        <ul class="dropdown-menu">
+						          <li><a href="#">Página 1</a></li>
+						          <li><a href="#">Página 2</a></li>
+						          <li><a href="#">Página 3</a></li>
+						      	</ul>
+						  	</li>
+						</ul>
+				    </div>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<main class="container">
+	
+		<div class="row">
+			<div class="col-xs-12">
+				
+
+
+
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+				  <!-- Indicators -->
+
+
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner">
+				    <div class="item active">
+				      <img src="http://www.lorempixel.com/1280/600" alt="Chania">
+				      <div class="carousel-caption">
+				        <h3>Los Angeles</h3>
+				        <p>LA is always so much fun!</p>
+				      </div>
+				    </div>
+
+				    <div class="item">
+				      <img src="http://www.lorempixel.com/1281/600" alt="Chania">
+				      <div class="carousel-caption">
+				        <h3>Lasdasdasd</h3>
+				        <p>LA is always so much fun!</p>
+				      </div>
+				    </div>
+
+				  <!-- Left and right controls -->
+				  <div class="left carousel-control">
+				    <a class="glyphicon glyphicon-chevron-left" href="#myCarousel" data-slide="prev"></a>
+				    <span class="sr-only">Previous</span>
+				  </div>
+
+				  <div class="right carousel-control">
+				    <a class="glyphicon glyphicon-chevron-right" href="#myCarousel" data-slide="next"></a>
+				    <span class="sr-only">Next</span>
+				  </div>
+				</div>
+
+
+
+
+			</div>
+		</div>
+
+	</main>
+
+	<footer class="container-fluid pX-0">
+		<div class="container pX-0">
+			<div class="logo-footer-container col-sm-3 col-md-2 col-lg-2 pX-0">
+				<img src="img/logo-cultura-footer.png">
+			</div>
+			<div class="menu-footer-container col-sm-9">
+				<ul class="nav navbar-nav">
+					<li><a href="#">QUEM SOMOS</a></li>
+					<li><a href="#">RESPONSABILIDADE SOCIAL</a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>

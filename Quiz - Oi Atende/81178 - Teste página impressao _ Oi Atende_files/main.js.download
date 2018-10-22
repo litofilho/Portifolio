@@ -1,0 +1,418 @@
+var scrollNotificacoes = function(){//SCROLL NO DROPDOWN DE NOTICIAS E NOTIFICACOES
+	$('.lista-notificacao').slimScroll({
+		height:'455px',
+		size:'6px',
+		color:'#b22072',
+		opacity:1,
+		borderRadius:0,
+		alwaysVisible:true,
+		railVisible:true,
+		railColor:'#ededed',
+		railOpacity:1,
+		railBorderRadius:0,
+		disableFadeOut:true
+	});
+}, scrollMenu = function(){//SCROLL NOS SUBMENUS PRINCIPAIS
+	$('.menu-interno > ul').slimScroll({
+		height:'340px',
+		size:'6px',
+		color:'#ff7200',
+		opacity:1,
+		borderRadius:0,
+		alwaysVisible:false,
+		railVisible:true,
+		railColor:'#ededed',
+		railOpacity:1,
+		railBorderRadius:0,
+		disableFadeOut:true
+	});
+}, menuPrincipal = function(){
+	$('.menu-procedimentos').hover(function(){
+		$('.procedimentos-busca > .overlay').addClass('ativo'); $('.menu-procedimentos').css({'z-index':300}); $('.menu-principal').addClass('ativo');
+	},function(){
+		$('.procedimentos-busca > .overlay').removeClass('ativo'); $('.menu-procedimentos').css({'z-index':98}); $('.menu-principal').removeClass('ativo');
+	});
+	var $mi = $('.menu-interno'), $me = $('.menu');
+	var renderMenu = function(nv, mn){
+		$me.removeClass('ativo');
+		$me.find('span').removeClass('selecionado');
+		mn.addClass('ativo');
+		var itemAtivo, cont = nv - 2, sec = nv - 1;
+		$('.nivel'+nv).each(function(){
+			if($(this).hasClass('ativo')){
+				itemAtivo = $(this).attr('father-item');
+			}
+		});
+		for (var i = 0; i < cont; i++) {
+			$('.nivel' + sec).each(function(){
+				$(this).find('span').each(function(){
+					if( $(this).attr('child-menu') == itemAtivo ){
+						$(this).parents('.menu').addClass('ativo');
+						$(this).addClass('selecionado');
+						itemAtivo = $(this).parents('.menu').attr('father-item');
+					}
+				});
+			});
+			sec = sec - 1;
+		}
+		$('.menu-principal').addClass('ativo');
+		$('.menu-principal span').each(function(){
+			$(this).removeClass('selecionado');
+			if( $(this).attr('child-menu') == itemAtivo ){
+				$(this).addClass('selecionado');
+			}
+		})
+	}, renderMenuPrincipal = function(){
+		$me.removeClass('ativo');
+		$('.menu-principal').addClass('ativo');
+	}, renderItem = function(item){
+		if( item.parents('.menu').hasClass('menu-ativo')){
+			$mi.removeClass('ativo');
+		}
+		$mi.each(function(){
+			if( $(this).attr('father-item') == item.find('span').attr('child-menu') ){
+		 		$(this).addClass('ativo');
+		 	}
+		});
+	};
+	$('.menu-procedimentos').hover(function(){
+		var mn = $(this);
+		if(mn.hasClass('nivel5')){
+			renderMenu(5, mn);
+		} else if(mn.hasClass('nivel4')){
+			renderMenu(4, mn);
+		} else if(mn.hasClass('nivel3')){
+			renderMenu(3, mn);
+		} else if(mn.hasClass('nivel2')){
+			renderMenu(2, mn);
+		} else if (mn.hasClass('menu-principal')){
+			renderMenuPrincipal();
+		}
+	}, function(){
+		$me.removeClass('ativo');
+		$me.find('span').removeClass('selecionado');
+	});
+	$('.menu li').hover(function(){
+		var item = $(this), mn = $(this).parents('.menu');
+		if(mn.hasClass('nivel5')){
+			renderMenu(5, mn);
+		} else if(mn.hasClass('nivel4')){
+			renderMenu(4, mn);
+			renderItem(item);
+		} else if(mn.hasClass('nivel3')){
+			renderMenu(3, mn);
+			renderItem(item);
+		} else if(mn.hasClass('nivel2')){
+			renderMenu(2, mn);
+			renderItem(item);
+		} else if (mn.hasClass('menu-principal')){
+			renderMenuPrincipal();
+			renderItem(item);
+		}
+	});
+}, inputBusca = function(){
+	$('.filtro-busca').click(function(){
+		if( $(this).hasClass('operacao-ativa') ){
+			var texto = $('.campo-busca .input-busca-lumis.operacao-ativa input[type=search]').val();
+			$(this).removeClass('operacao-ativa').addClass('todas-operacoes');
+			$('.campo-busca .input-busca-lumis.operacao-ativa').removeClass('ativo');
+			$('.campo-busca .input-busca-lumis.todas-operacoes input[type=search]').val(texto);
+			$('.campo-busca .input-busca-lumis.todas-operacoes').addClass('ativo');
+		} else {
+			var texto = $('.campo-busca .input-busca-lumis.todas-operacoes input[type=search]').val();
+			$(this).removeClass('todas-operacoes').addClass('operacao-ativa');
+			$('.campo-busca .input-busca-lumis.todas-operacoes').removeClass('ativo');
+			$('.campo-busca .input-busca-lumis.operacao-ativa input[type=search]').val(texto);
+			$('.campo-busca .input-busca-lumis.operacao-ativa').addClass('ativo');
+		}
+
+	});
+	$('.wrap-busca .campo-busca input[type=search]').focus(function(){
+		$('.campo-busca').addClass('ativo');
+		$('.procedimentos-busca > .overlay').addClass('ativo');
+		$('.conteudo-busca-foco').css('height','auto');
+	}).blur(function(){
+		$('.campo-busca').removeClass('ativo');
+		$('.procedimentos-busca > .overlay').removeClass('ativo');
+		$('.conteudo-busca-foco').css('height','0');
+	});
+}, topShrink = function(){
+	if($('.pagina').hasClass('pagina-home')){
+		var $w = $(window),
+		$topo = $('.topo');
+		$w.scroll(function(){
+			$winTop = $w.scrollTop();
+			if($winTop > 300){
+				if( !($topo.hasClass('topo-fixo')) ){
+					$topo.addClass('topo-fixo');
+					$('.pagina').css('padding-top','300px');
+					$topo.css('margin-top','-300px');
+					$topo.animate({marginTop:0}, 500,'linear');
+					$('.termos-mais-buscados').hide();
+				}
+			} else {
+				if( $topo.hasClass('topo-fixo') ){
+					$topo.removeClass('topo-fixo');
+					$('.termos-mais-buscados').show();
+					$('.pagina').css('padding-top','0px');
+				}
+			}
+		});
+	}
+},maisVistos = function(aba){
+	$('.lista-maisvistos').removeClass('ativo');
+	$('.aba').removeClass('ativo');
+	$('.lista-maisvistos.'+aba).addClass('ativo');
+	$('.aba.'+aba).addClass('ativo');
+}, modalHome = function(){
+	$('.modal-close').click(function(e){
+		e.preventDefault();
+		$(this).parents('#modal').removeClass('visivel');
+	});
+	$('#modal .overlay').click(function(){
+		$(this).parents('#modal').removeClass('visivel');
+	});
+
+	$('.modal-actions li a#lido').click(function(e){
+		//EVENTO DE MARCAR MODAL COMO LIDO
+		e.preventDefault();
+		$(this).parents('#modal').removeClass('visivel');
+	});
+	$('.modal-actions li a#ler-depois').click(function(e){
+		e.preventDefault();
+		$(this).parents('#modal').removeClass('visivel');
+	});
+}, premissaProcedimento = function(){
+	$('.premissas .conteudo-premissas .ver-mais span').click(function(){
+		if($('.conteudo-premissas').hasClass('recolhido')){
+			$('.conteudo-premissas').removeClass('recolhido');
+			$('.premissas .conteudo-premissas .ver-mais span').html('Ver Menos');
+		} else {
+			$('.conteudo-premissas').addClass('recolhido');
+			$('.premissas .conteudo-premissas .ver-mais span').html('Ver Mais');
+		}
+	})
+}, fluxoProcedimento = function(){
+	$('.filtro-lateral .abrir-fechar .btn-recolher').click(function(){
+		$('.detalhes-procedimentos .filtro-lateral').toggleClass('recolhido');
+		$('.detalhes-procedimentos .fluxo-procedimentos').toggleClass('expandido');
+		$('.detalhes-procedimentos .box-grupo-link').toggleClass('expandido');
+	});
+	$('.filtro-lateral .lista-procedimentos').on('click','li span',function(){
+		$('.filtro-lateral .lista-procedimentos li span').removeClass('item-ativo');
+		$(this).addClass('item-ativo');
+	});
+	$('.filtro-lateral .lista-procedimentos').on('click','li span .marcador',function(){
+		if($(this).parent().hasClass('item-pai')){
+			$(this).parent().parent().toggleClass('aberto');
+		}
+	})
+}, botaoVoltar = function(){
+	$('.btn-voltar').click(function(){
+		window.history.back();
+	});
+}, carregaTopico = function(idTopico){
+	$('.topico-procedimento').removeClass('visivel');
+	$('.lista-procedimentos span').removeClass('item-ativo');
+	$('.topico-procedimento').each(function(){
+		if( $(this).attr('id-topico') == idTopico ){
+			$(this).addClass('visivel');
+		}
+	});
+	$('.lista-procedimentos span').each(function(){
+		if( $(this).attr('id-topico') == idTopico ){
+			$(this).addClass('item-ativo');
+		}
+	});
+}, listaTopico = function(){
+	$('.lista-procedimentos').on('click','li span',function(){
+		carregaTopico( $(this).attr('id-topico') );
+	});
+	$('.coluna.col-9.fluxo-procedimentos').on('click','.link-topicos li.link',function(){
+		var TopicoId = $(this).attr('id-topico');
+		$('.filtro-lateral .lista-procedimentos li span').each(function(){
+			if( $(this).attr('id-topico') == TopicoId ){
+				$(this).parent().parent().parent().addClass('aberto');
+			}
+		});
+		carregaTopico( $(this).attr('id-topico') );
+	});
+	$('.coluna.col-9.fluxo-procedimentos').on('click','.item-breadcrumb',function(){
+		carregaTopico( $(this).attr('id-topico') );
+	});
+}, selectOrdenacao = function(){
+	$('select.ordenacao').each(function(){
+		var $this = $(this),
+		numberOfOptions = $(this).children('option').length,
+		started = $this.hasClass('s-hidden')?true:false;
+		if(!started){
+			$this.addClass('s-hidden');
+			$this.wrap('<div class="select-inside"></div>');
+			$this.after('<div class="styledSelect"></div>');
+		}
+
+		var $styledSelect = $this.next('div.styledSelect');
+
+		var text = $this.find(':selected').length>0?$this.find(':selected').eq(0).text():$this.children('option').eq(0).text(), $list;
+		$styledSelect.text(text)
+		if(!started){
+			$list = $('<ul />', {
+				'class': 'select-options'
+			}).insertAfter($styledSelect);
+		}
+		else {
+			$list = $styledSelect.next('.select-options')
+			$list.html('');
+		}
+
+		for (var i = 0; i < numberOfOptions; i++) {
+			$('<li />', {
+				text: $this.children('option').eq(i).text(),
+				rel: $this.children('option').eq(i).val()
+			}).appendTo($list);
+		}
+
+		var $listItems = $list.children('li');
+		if(!started){
+			$styledSelect.click(function (e) {
+				e.stopPropagation();
+				$('div.styledSelect.active').each(function () {
+					$(this).removeClass('active').next('ul.select-options').hide();
+				});
+				$(this).toggleClass('active').next('ul.select-options').toggle();
+			});
+		}
+
+		$listItems.click(function (e) {
+			e.stopPropagation();
+			$styledSelect.text($(this).text()).removeClass('active');
+			$this.val($(this).attr('rel')).trigger('change');
+			$list.hide();
+		});
+
+		$(document).click(function () {
+			$styledSelect.removeClass('active');
+			$list.hide();
+		});
+
+	});
+}, buscaFluxoTopico = function(){
+	$('#input-busca-fluxo-topico').keyup(function(){
+		if( $(this).val().trim().length > 2 ){
+			var termoBusca = $(this).val().toLowerCase();
+			$(".lista-procedimentos li").hide();
+			$(".lista-procedimentos li span").removeClass('item-buscado');
+		    $(".topico-procedimento .conteudo").each(function(){
+				var text = $(this).html();
+				var titulo = $(this).parent().find('.barra-titulo h4').html();
+				text = text.replace(/<mark>|<\/mark>/g,'');
+				titulo = titulo.replace(/<mark>|<\/mark>/g,'');
+		    	if(text.toLowerCase().indexOf(termoBusca) != -1 || titulo.toLowerCase().indexOf(termoBusca) != -1){
+					text = text.replace(new RegExp(termoBusca,"gi"), function (x) {
+						return '<mark>' + x + '</mark>';
+					});
+					titulo = titulo.replace(new RegExp(termoBusca,"gi"), function (x) {
+						return '<mark>' + x + '</mark>';
+					});
+					var procedimento = $(this).parents('.topico-procedimento').attr('id-topico');
+					$(".lista-procedimentos li span").each(function(){
+						if( $(this).attr('id-topico') == procedimento ){
+							$(this).parents('li').show();
+							$(this).parents('li').addClass('aberto');
+							$(this).addClass('item-buscado');
+						}
+					})
+				}
+				$(this).html(text);
+				$(this).parent().find('.barra-titulo h4').html(titulo);
+			});
+		} else {
+			$(".lista-procedimentos li").show();
+			$(".lista-procedimentos li span").removeClass('item-buscado');
+			$(".topico-procedimento .conteudo").each(function(){
+				var text = $(this).html();
+				text = text.replace(/<mark>|<\/mark>/g,'');
+				$(this).html(text);
+				
+				var titulo = $(this).parent().find('.barra-titulo h4').html();
+				titulo = titulo.replace(/<mark>|<\/mark>/g,'');
+				$(this).parent().find('.barra-titulo h4').html(titulo);
+			});
+		}
+	});
+}, buscaGrupoLink = function(){
+	$('#input-busca-grupo-link').keyup(function(){
+		if( $(this).val().trim().length > 2 ){
+			var termoBusca = $(this).val().toLowerCase();
+			$(".menu-home-procedimentos li").hide();
+			$(".box-grupo-link .grupo-links div ul li").each(function(){
+				var titulo = $(this).parents('.grupo-links').find('h4').html();
+				var text = $(this).find('a').html();
+				text = text.replace(/<mark>|<\/mark>/g,'');
+				titulo = titulo.replace(/<mark>|<\/mark>/g,'');
+				
+		    	if(titulo.toLowerCase().indexOf(termoBusca) != -1 || text.toLowerCase().indexOf(termoBusca) != -1){
+					text = text.replace(new RegExp(termoBusca,"gi"), function (x) {
+						return '<mark>' + x + '</mark>';
+					});
+					titulo = titulo.replace(new RegExp(termoBusca,"gi"), function (x) {
+						return '<mark>' + x + '</mark>';
+					});
+					var categoria = $(this).parents('.grupo-links').find('h4').text();
+					$(".menu-home-procedimentos li").each(function(){
+						if( $(this).find('a').text() == categoria ){
+							$(this).show();
+						}
+					})
+				}
+				$(this).find('a').html(text);
+				$(this).parents('.grupo-links').find('h4').html(titulo);
+			});
+		} else {
+			$(".menu-home-procedimentos li").show();
+			$(".lista-procedimentos li span").removeClass('item-buscado');
+			$(".box-grupo-link .grupo-links div ul li").each(function(){
+				var text = $(this).find('a').html();
+				text = text.replace(/<mark>|<\/mark>/g,'');
+				$(this).find('a').html(text)
+				
+				var titulo = $(this).parents('.grupo-links').find('h4').html();
+				titulo = titulo.replace(/<mark>|<\/mark>/g,'');
+				$(this).parents('.grupo-links').find('h4').html(titulo);
+			});
+		}
+	});
+}, videoButton = function(){
+	var player = document.querySelectorAll('video');
+	var btnPlay = document.querySelectorAll('.play');
+	var numVideo = player.length;
+	for (var i = 0; i < numVideo; i++) {
+		btnPlay[i].addEventListener('click',function(){
+			this.previousElementSibling.play();
+			this.previousElementSibling.controls = "true";
+			this.style.display = "none";
+		});
+		player[i].addEventListener('click',function(){
+			this.play();
+			this.controls = "true";
+			this.nextElementSibling.style.display = "none";
+		});
+	}
+}
+
+$(document).ready(function(){
+	topShrink();
+	scrollNotificacoes();
+	scrollMenu();
+	menuPrincipal();
+	inputBusca();
+	selectOrdenacao();
+	modalHome();
+	premissaProcedimento();
+	fluxoProcedimento();
+	botaoVoltar();
+	listaTopico();
+	buscaFluxoTopico();
+	buscaGrupoLink();
+	videoButton();
+});

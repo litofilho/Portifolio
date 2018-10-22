@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="pt-BR" class="h-100">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="Bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="bootstrap-table-master/dist/bootstrap-table.css">
+  <link rel="stylesheet" href="bootstrap-table-filter-control.css">
+  <link rel="stylesheet" href="bootstrap-editable.css">
+  <link rel="stylesheet" href="custom.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="jquery.js"></script>
+  <script src="jquery/jquery-3.3.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="Bootstrap/js/bootstrap.js"></script>
+  <script src="bootstrap-table-master/dist/bootstrap-table.js"></script>
+  <script src="bootstrap-table-editable.js"></script>
+  <script src="bootstrap-editable.js"></script>
+  <script src="bootstrap-table-filter-control.js"></script>
+  <script src="custom.js"></script>
+
+</head>
+
+<body>
+
+  <nav class="navbar fixed-top navbar-expand-lg navbar-primary bg-primary shadow-sm">
+    <div class="collapse navbar-collapse">
+      <button type="button" onclick="openNav()" class="btn btn-menu fas fa-bars"></button>
+      <div class="col-1 offset-md-2 pl-4">
+        <span style="font-size: 12px; color: #5F8DB9;">Você está no:</span>
+        <p style="font-size: 31px;color: white;line-height:  20px;margin:  0;">FACE
+          <p>
+      </div>
+      <div class="col-auto offset-md-7 d-flex">
+        <i class="fas fa-user" style="font-size: 34px; color:white; padding: 5px;"></i>
+        <div class="col">
+          <p style="font-size: 18px; color: white; margin-bottom: 0;">Carlos Filho</p>
+          <p style="font-size: 12px; color: #5F8DB9; margin-bottom: 0;">Ultimo acesso: 29/08/2021</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidenav Push -->
+
+  <div class="sidenav" id="mySidenav">
+    <div class="logo">
+      <a href="#"><img src="InTech-pos-cor.png"/></a>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    </div>
+    <ul class="menu">
+      <li class="item">
+        <a href="#SH-menu" data-toggle="collapse" aria-expanded="false">SH
+          <i class="fa fa-plus-square float-right"></i>
+        </a>
+        <ul class="menu collapse" id="SH-menu">
+          <li class="item">
+            <a href="#">Item 1
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">Item 2
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">Item 3
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="item">
+        <a href="#interfaces-menu" data-toggle="collapse" aria-expanded="false">
+          Interfaces
+          <i class="fa fa-plus-square float-right"></i>
+        </a>
+        <ul class="menu collapse" id="interfaces-menu">
+          <li class="item">
+            <a href="#">Item 1
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">Item 2
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">Item 3
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="item">
+        <a href="#dadosmestres-menu" data-toggle="collapse" aria-expanded="false">
+          Dados Mestres
+          <i class="fa fa-plus-square float-right"></i>
+        </a>
+        <ul class="menu collapse" id="dadosmestres-menu">
+          <li class="item">
+            <a href="#">Item 1
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">Item 2
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">Item 3
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="item">
+        <a href="#procedimentos-menu" data-toggle="collapse" aria-expanded="false">Procedimentos
+          <i class="fa fa-plus-square float-right"></i>
+        </a>
+        <ul class="menu collapse" id="procedimentos-menu">
+          <li class="item">
+            <a href="#">Item 1
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">Item 2
+            </a>
+          </li>
+          <li class="item">
+            <a href="#">Item 3
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="item">
+        <a href="#pacientes-menu" data-toggle="collapse" aria-expanded="false">
+          Pacientes
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <main role="main" class="bg-face">
+    <div class="container">
+
+      <nav aria-label="breadcrumb" class="container px-0">
+        <ol class="breadcrumb px-0">
+          <li class="breadcrumb-item"><a href="#"><i class="fa fa-home pr-2"></i>Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Lista de Tabela Padrão</li>
+        </ol>
+      </nav>
+
+      <div id="card-filtrar-tabela" class="card container shadow-sm p-3 mb-5 bg-white rounded mt-3">
+        <div class="d-flex flex-row mb-3 mx-3">
+          <h4>Filtros</h4>
+        </div>
+
+        <div class="d-flex flex-row mb-3 ">
+
+          <div class="form-group col">
+            <label>Tabela Padrão</label>
+            <div class="input-group cursor-pointer" data-toggle="modal" data-target="#modal-add2">
+              <input type="text" class="form-control col" placeholder="Selecionar" aria-label="Selecionar">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label>Descrição</label>
+            <div class="input-group">
+              <input type="text" class="form-control" disabled>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row-reverse mb-3">
+          <button id="limpar-filtro" class="btn mx-3" disabled>Limpar Filtro</button>
+        </div>
+      </div>
+
+      <div id="card-tiss" class="card container shadow-sm p-3 mb-5 bg-white rounded mt-3 collapse">
+        <div class="d-flex flex-row mb-3 mx-3">
+          <h4>Guia Tiss</h4>
+        </div>
+
+        <div class="d-flex flex-row mb-3 ">
+
+          <div class="form-group col">
+            <label>Unidade</label>
+            <div class="input-group">
+              <select class="custom-select">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label>Convênio</label>
+            <div class="input-group cursor-pointer" data-toggle="modal" data-target="#modal-add2">
+              <input type="text" class="form-control col" placeholder="Selecionar" aria-label="Selecionar">
+              <div class="input-group-append">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label>Plano</label>
+            <div class="input-group">
+              <select class="custom-select">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="d-flex flex-row mb-3 ">
+
+          <div class="form-group col">
+            <label>Competência-Mês</label>
+            <div class="input-group">
+              <select class="custom-select">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label>Competência-Ano</label>
+            <div class="input-group">
+              <select class="custom-select">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col ">
+            <label>Paciente</label>
+            <div class="input-group">
+              <input type="text" class="form-control col">
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label>Tipo de Guia</label>
+            <div class="input-group">
+              <select class="custom-select">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label>Impresso</label>
+            <div class="input-group">
+              <select class="custom-select">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col">
+            <label>Upload</label>
+            <div class="input-group">
+              <select class="custom-select">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="d-flex flex-row-reverse mb-3">
+          <button id="limpar-filtro" class="btn btn-primary mx-3">
+               Pesquisar
+          </button>
+          <button id="limpar-filtro" class="btn" disabled>
+               Limpar Filtro
+          </button>
+        </div>
+
+      </div>
+
+      <div id="card-tabela-padrao" class="card container shadow-sm p-3 mb-5 bg-white rounded mt-3">
+        <div class="d-flex flex-row mb-3 mx-3">
+          <h4>Lista de Tabela Padrão</h4>
+        </div>
+        <div class="d-flex flex-row mb-3">
+          <div class="collapse alert alert-success w-100" id="msg-success" role="alert">
+            <i class="fa fa-check-circle mr-2 " style="font-size:24px"></i>Alterações salvas com sucesso
+          </div>
+        </div>
+        <div class="flex-row mb-3 mx-3">
+          <div id="table-toolbar">
+            <button id="add" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
+                       Adicionar
+              </button>
+            <button id="remove" class="btn" data-toggle="modal" data-target="#modal-exclude-confirm" disabled>
+                       Remover
+              </button>
+          </div>
+          <table id="tbLista" data-toggle="table">
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+  </main>
+
+  <footer class="bg-primary fixed-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-auto mx-auto my-3">
+          <img src="diariodeborto.png" / style="height: 50px; padding: 10px; border-right:3px solid yellow">
+          <div style="padding: 10px; color:white; border-left:3px solid green; height: 100%; float:  right; margin-left: 2px;">Tecnologia da Informação</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Add -->
+  <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Novo Registro de Tabela Padrão</h4>
+          <!--button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button-->
+        </div>
+
+        <div class="modal-body">
+          <div class="collapse alert alert-danger mx-auto" id="msg-erro" role="alert">
+            <i class="fa fa-times-circle mr-2 " style="font-size:24px"></i>Os campos com * são obrigatórios
+          </div>
+          <div class="form-group">
+            <label>Nome*</label>
+            <input type="text" class="form-control mb-2" aria-describedby="basic-addon1" />
+          </div>
+          <div class="form-group">
+            <label>Descrição*</label>
+            <input type="text" class="form-control mb-2" aria-describedby="basic-addon1" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-toggle="collapse" href="#msg-erro" role="button" aria-expanded="false" aria-controls="alert">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Add2 -->
+  <div class="modal fade" id="modal-add2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Novo Registro de Tabela Padrão</h4>
+          <!--button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button-->
+        </div>
+
+        <div class="modal-body">
+          <div class="collapse alert alert-danger mx-auto" id="msg-erro" role="alert">
+            <i class="fa fa-times-circle mr-2 " style="font-size:24px"></i>Os campos com * são obrigatórios
+          </div>
+          <table data-toggle="table" id="tbLista2"></table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-toggle="collapse" href="#card-tiss" role="button" aria-expanded="false" data-dismiss="modal" id="selecionar-tb" disabled>Selecionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Exclude Confirm-->
+  <div class="modal fade" id="modal-exclude-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Excluir Tabela Padrão</h4>
+        </div>
+
+        <div class="modal-body">
+          <div class="collapse alert alert-danger mx-auto" id="msg-erro" role="alert">
+            <i class="fa fa-times-circle mr-2 " style="font-size:24px"></i>Os campos com * são obrigatórios
+          </div>
+          <p>Confirmação a exclusão do(s) item(ns) abaixp?</p>
+          <p>- TESTE CARAI</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="collapse" href="#msg-success" role="button" aria-expanded="false" aria-controls="alert">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    var remove = $('#remove');
+    var data = [{
+        "id": 0,
+        "name": "Item 0",
+        "price": "$0"
+      },
+      {
+        "id": 1,
+        "name": "Item 1",
+        "price": "$1"
+      },
+      {
+        "id": 2,
+        "name": "Item 2",
+        "price": "$2"
+      },
+      {
+        "id": 3,
+        "name": "Item 3",
+        "price": "$3"
+      },
+      {
+        "id": 4,
+        "name": "Item 4",
+        "price": "$4"
+      },
+      {
+        "id": 5,
+        "name": "Item 5",
+        "price": "$5"
+      },
+      {
+        "id": 6,
+        "name": "Item 6",
+        "price": "$6"
+      },
+      {
+        "id": 7,
+        "name": "Item 7",
+        "price": "$7"
+      },
+      {
+        "id": 8,
+        "name": "Item 8",
+        "price": "$8"
+      },
+      {
+        "id": 9,
+        "name": "Item 9",
+        "price": "$9"
+      },
+      {
+        "id": 10,
+        "name": "Item 10",
+        "price": "$10"
+      },
+      {
+        "id": 11,
+        "name": "Item 11",
+        "price": "$11"
+      },
+      {
+        "id": 12,
+        "name": "Item 12",
+        "price": "$12"
+      },
+      {
+        "id": 13,
+        "name": "Item 13",
+        "price": "$13"
+      },
+      {
+        "id": 14,
+        "name": "Item 14",
+        "price": "$14"
+      },
+      {
+        "id": 15,
+        "name": "Item 15",
+        "price": "$15"
+      },
+      {
+        "id": 16,
+        "name": "Item 16",
+        "price": "$16"
+      },
+      {
+        "id": 17,
+        "name": "Item 17",
+        "price": "$17"
+      },
+      {
+        "id": 18,
+        "name": "Item 18",
+        "price": "$18"
+      },
+      {
+        "id": 19,
+        "name": "Item 19",
+        "price": "$19"
+      }
+    ];
+
+    $("#tbLista").bootstrapTable({
+
+      idField: 'id',
+      data: data,
+      dataType: 'json',
+      classes: 'table table-hover table-condensed',
+      method: 'post',
+      search: true,
+      toolbar: '#table-toolbar',
+      pageSize: 5,
+      striped: true,
+      sidePagination: 'client',
+      pagination: true,
+      pageList: [25, 50, 100, 'ALL'],
+      sortName: 'name',
+      sortOrder: 'asc',
+      singleSelect: false,
+      maintainSelected: true,
+      clickToSelect: false,
+      filterControl: true,
+      filterShowClear: true,
+      columns: [{
+          title: 'Selecionar Todos',
+          checkbox: true,
+          editable: false
+        },
+        {
+          field: 'id',
+          title: 'Id',
+          visible: false,
+          showFilter: true,
+        },
+        {
+          class: 'w-75',
+          field: 'name',
+          title: 'Receita',
+          sortable: true,
+          showFilter: true,
+          filterControl: 'input',
+          editable: {
+            mode: 'inline',
+            showbuttons: false
+          }
+        },
+        {
+          field: 'price',
+          title: 'Item',
+          sortable: true,
+          showFilter: true,
+          filterControl: 'input',
+
+        }
+      ]
+    });
+
+    $("#tbLista .editable").editable('show');
+
+    $('.editable-input input').on('shown', function(e, editable) {
+        editable.input.$input.keypress(function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
+    });
+
+    $("#tbLista2").bootstrapTable({
+
+      idField: 'id',
+      data: data,
+      dataType: 'json',
+      classes: 'table table-hover table-condensed',
+      method: 'post',
+      search: true,
+      toolbar: '#toolbar',
+      pageSize: 5,
+      striped: true,
+      sidePagination: 'client',
+      pagination: true,
+      pageList: [25, 50, 100, 'ALL'],
+      sortName: 'name',
+      sortOrder: 'asc',
+      singleSelect: false,
+      maintainSelected: true,
+      clickToSelect: false,
+      filterControl: true,
+      filterShowClear: true,
+      columns: [{
+          title: 'Selecionar Todos',
+          radio: true,
+          editable: false
+        },
+        {
+          field: 'id',
+          title: 'Id',
+          visible: false,
+          showFilter: true,
+        },
+        {
+          class: 'w-75',
+          field: 'name',
+          title: 'Receita',
+          sortable: true,
+          showFilter: true,
+          filterControl: 'input',
+          editable: false
+        },
+        {
+          field: 'price',
+          title: 'Item',
+          sortable: true,
+          showFilter: true,
+          filterControl: 'input'
+
+        }
+      ]
+    });
+
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      //document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      //document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+h4 {
+    margin-bottom: 40px;
+}
+
+.obrigatorio {
+    float: right;
+    display: block;
+    padding: 5px;
+    color: #DE368C;
+    font-size: 13px;
+}
+
+.quiz {
+    clear: both;
+    background: #F3F3F3;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+}
+
+.quiz .questao{
+  display: none;
+}
+
+.quiz .questao.ativo{
+  display: block;
+}
+
+.questao .numero {
+    padding-bottom: 10px;
+}
+
+.questao .numero span{
+    margin: 0 -2px;
+    font-size: 14px;
+}
+
+.questao .num {
+    color: #DE368C;
+    font-size: 20px !important;
+    font-weight: bolder;
+}
+
+.questao .enunciado {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.questao .opcoes {
+    padding-bottom: 20px;
+}
+
+.questao .opcoes .op {
+    padding: 10px 0;
+}
+
+.questao .opcoes .op input {
+    margin-right: 5px;
+}
+
+.questao .acao {
+    display: inline-block;
+}
+
+.quiz .questao .acao .btn-prox {
+  float: left;
+  color: white;
+  padding: 7px;
+  font-weight: bold;
+  background: #d82482;
+  position: relative;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+
+.quiz .questao .acao .btn-prox.disabled{
+  background: #C0BFBF;
+  cursor: default;
+}
+
+.quiz .questao .acao .btn-prox.disabled:hover{
+  background: #C0BFBF;
+  cursor: default;
+}
+
+.quiz .questao .acao .btn-prox:hover {
+    background: #f8562c;
+}
+
+.quiz .questao .acao .btn-submit {
+  float: left;
+  color: white;
+  padding: 7px;
+  font-weight: bold;
+  background: #d82482;
+  position: relative;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+  display: none;
+}
+
+.quiz .questao .acao .btn-submit.disabled{
+  background: #C0BFBF;
+  cursor: default;
+}
+
+.quiz .questao .acao .btn-submit.disabled:hover{
+  background: #C0BFBF;
+  cursor: default;
+}
+
+.quiz .questao .acao .btn-submit:hover {
+    background: #f8562c;
+}
+
+.resultado{
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px;
+  font-size: 20px;
+}
